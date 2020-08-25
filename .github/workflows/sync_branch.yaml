@@ -1,0 +1,25 @@
+name: sync_branch
+on:
+  schedule:
+    - cron: "*/60 * * * *"
+jobs:
+  sync_branch:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      REPO_BRANCH: peer_review
+    steps:
+      - uses: actions/checkout@v2
+      - name: Config git
+        run: |
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "noreply@github.com"
+          git remote add ghclass https://github.com/rundel/ghclass.git
+      
+      - name: Merge remote branch
+        run: |
+          git fetch ghclass ${REPO_BRANCH}
+          git checkout -b ${REPO_BRANCH}
+          git merge -X theirs ghclass/${REPO_BRANCH} --allow-unrelated-histories -m "Merge"
+          git push origin peer_review
+          
