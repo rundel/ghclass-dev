@@ -20,7 +20,6 @@ jobs:
         run: |
           git fetch ghclass ${REPO_BRANCH}
           git checkout -b ${REPO_BRANCH}
-          git pull origin ${REPO_BRANCH}
           git merge -X theirs ghclass/${REPO_BRANCH} --allow-unrelated-histories -m "Merge"
           git push --force origin ${REPO_BRANCH}
           
