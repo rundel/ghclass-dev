@@ -18,6 +18,7 @@ jobs:
           git config --global pull.rebase false
           
       - name: Remote
+        run: |
           git remote add ghclass https://github.com/rundel/ghclass.git
       
       - name: Checkout
