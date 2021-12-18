@@ -1,0 +1,10 @@
+secret/
+.Rproj.user
+.Rhistory
+.RData
+inst/doc
+.httr-oauth
+.DS_Store
+doc
+Meta
+vignettes/articles/cache/
